@@ -52,10 +52,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let resetGroundSprite = SKAction.moveBy(x: groundTexture.size().width * 2.0, y: 0, duration: 0.0)
         let moveGroundSpritesForever = SKAction.repeatForever(SKAction.sequence([moveGroundSprite,resetGroundSprite]))
         
-        for var i:CGFloat = 0; i < 2.0 + self.frame.size.width / ( groundTexture.size().width * 2.0 ); i += 1 {
+        for var i in 0 ..< Int(2.0 + self.frame.size.width / ( groundTexture.size().width * 2.0 )) {
             let sprite = SKSpriteNode(texture: groundTexture)
             sprite.setScale(2.0)
-            sprite.position = CGPoint(x: i * sprite.size.width, y: sprite.size.height / 2.0)
+            sprite.position = CGPoint(x: CGFloat(i) * sprite.size.width, y: sprite.size.height / 2.0)
             sprite.run(moveGroundSpritesForever)
             moving.addChild(sprite)
         }
@@ -68,11 +68,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let resetSkySprite = SKAction.moveBy(x: skyTexture.size().width * 2.0, y: 0, duration: 0.0)
         let moveSkySpritesForever = SKAction.repeatForever(SKAction.sequence([moveSkySprite,resetSkySprite]))
         
-        for var i:CGFloat = 0; i < 2.0 + self.frame.size.width / ( skyTexture.size().width * 2.0 ); i += 1 {
+         //for var i:CGFloat = 0; i < 2.0 + self.frame.size.width / ( skyTexture.size().width * 2.0 ); i += 1
+        
+        for var i in 0 ..< Int(2.0 + self.frame.size.width / ( skyTexture.size().width * 2.0 ) ){
             let sprite = SKSpriteNode(texture: skyTexture)
             sprite.setScale(2.0)
             sprite.zPosition = -20
-            sprite.position = CGPoint(x: i * sprite.size.width, y: sprite.size.height / 2.0 + groundTexture.size().height * 2.0)
+            sprite.position = CGPoint(x: CGFloat(i) * sprite.size.width, y: sprite.size.height / 2.0 + groundTexture.size().height * 2.0)
             sprite.run(moveSkySpritesForever)
             moving.addChild(sprite)
         }
